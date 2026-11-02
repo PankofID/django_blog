@@ -1,13 +1,128 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>TEST</h1>
-</body>
-</html>
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}PankofID — личный блог Панкова Даниила{% endblock %}
+
+{% block content %}
+<section class="hero" aria-labelledby="hero-title">
+    <div class="hero-inner page-width">
+        <p class="hero-eyebrow">Привет, я</p>
+        <h1 id="hero-title">Паньков Даниил</h1>
+        <p class="hero-copy">Это мой блог. Здесь я делюсь своими мыслями,<br class="desktop-break"> опытом, учёбой, проектами и просто тем, что интересно.</p>
+        <div class="tag-list" aria-label="Темы блога">
+            <a href="#posts">Программирование</a>
+            <a href="#posts">Python</a>
+            <a href="#posts">Django</a>
+            <a href="#posts">Математика</a>
+            <a href="#posts">Жизнь</a>
+        </div>
+        <a class="signature-link" href="#about">PankofID <span aria-hidden="true">→</span></a>
+    </div>
+</section>
+
+<div class="page-width content-layout">
+    <div class="main-column">
+        <section class="content-section popular-section" id="posts" aria-labelledby="popular-title">
+            <div class="section-heading">
+                <h2 id="popular-title">
+                    <svg class="heading-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 2c1.5 4-2.8 5.2-.5 8.1.8-1.6 2.6-2.4 3.2-4.1 3.1 2.8 4.7 5.7 3.7 9.2a7.1 7.1 0 0 1-13.8-1.8c0-3.1 2.2-6.1 5-8.3-.1 2.5.4 3.8 1.5 4.8C11.3 7 14.3 5.5 12.5 2Z"/></svg>
+                    Популярные посты
+                </h2>
+                <a class="text-link" href="#latest">Все посты <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="popular-grid searchable-posts">
+                {% for post in popular_posts %}
+                    <article class="post-card searchable-card">
+                        <a class="post-card-image" href="/posts/{{ post.slug }}/" aria-label="{{ post.title }}"{% if not post.image %} style="background: #fff"{% endif %}>
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="" loading="lazy">
+                            {% endif %}
+                        </a>
+                        <h3><a href="/posts/{{ post.slug }}/">{{ post.title }}</a></h3>
+                        <p class="post-excerpt">{{ post.content|striptags|truncatewords:20 }}</p>
+                        <div class="post-meta">
+                            <span>
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+                                {{ post.created_at|date:"j E Y" }}
+                            </span>
+                            <span>
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                {{ post.views }}
+                            </span>
+                        </div>
+                    </article>
+                {% empty %}
+                    <p class="empty-state">Популярные посты появятся здесь после публикации.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="content-section latest-section" id="latest" aria-labelledby="latest-title">
+            <div class="section-heading">
+                <h2 id="latest-title">
+                    <svg class="heading-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9Z"/><path d="M14 2v7h7M8 13h8m-8 4h8"/></svg>
+                    Последние посты
+                </h2>
+                <a class="text-link" href="#posts">Все посты <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="latest-list searchable-posts">
+                {% for post in recent_posts %}
+                    <article class="latest-card searchable-card">
+                        <a class="latest-image" href="/posts/{{ post.slug }}/" aria-label="{{ post.title }}"{% if not post.image %} style="background: #fff"{% endif %}>
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="" loading="lazy">
+                            {% endif %}
+                        </a>
+                        <div class="latest-content">
+                            <h3><a href="/posts/{{ post.slug }}/">{{ post.title }}</a></h3>
+                            <p>{{ post.content|striptags|truncatewords:25 }}</p>
+                            <div class="post-meta">
+                                <span>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+                                    {{ post.created_at|date:"j E Y" }}
+                                </span>
+                                <span>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    {{ post.views }}
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                {% empty %}
+                    <p class="empty-state">Пока нет публикаций. Новые записи будут отображаться в этом разделе.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <aside class="sidebar" aria-label="О блоге">
+        <section class="sidebar-card about-card" id="about">
+            <h2 class="sidebar-title"><span class="title-pill">Обо мне</span></h2>
+            <div class="profile">
+                <img src="{% static 'main/image/profile.png' %}" alt="Паньков Даниил" loading="lazy">
+                <div>
+                    <h3>Паньков Даниил</h3>
+                    <span>PankofID</span>
+                </div>
+            </div>
+            <p>Мне 16 лет. Увлекаюсь программированием, изучаю Python и Django, интересуюсь математикой, нейросетями и технологиями. В этом блоге делюсь своими мыслями, опытом, проектами и тем, что меня вдохновляет.</p>
+            <a class="button button-dark" href="#contact">Подробнее обо мне <span aria-hidden="true">→</span></a>
+        </section>
+
+        <section class="sidebar-card categories-card">
+            <h2 class="sidebar-title">
+                <svg class="heading-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3.4 13.4a2 2 0 0 1 0-2.8l7.2-7.2a2 2 0 0 1 1.4-.6h7a2 2 0 0 1 2 2v7a2 2 0 0 1-.4 1.6Z"/><circle cx="16.5" cy="7.5" r="1.5"/></svg>
+                Категории
+            </h2>
+            <ul class="category-list">
+                <li><a href="#posts">Программирование <span>8</span></a></li>
+                <li><a href="#posts">Математика <span>6</span></a></li>
+                <li><a href="#posts">Нейросети и ИИ <span>4</span></a></li>
+                <li><a href="#posts">Личное <span>3</span></a></li>
+                <li><a href="#posts">Проекты <span>2</span></a></li>
+                <li><a href="#posts">Разное <span>1</span></a></li>
+            </ul>
+        </section>
+    </aside>
+</div>
+{% endblock %}
