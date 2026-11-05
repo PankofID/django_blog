@@ -1,8 +1,91 @@
 {% extends "main/base.html" %}
 {% load static %}
 
-{% block title %}PankofID — О мне{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'main/css/about.css' %}">{% endblock %}
+
+{% block title %}PankofID — Обо мне{% endblock %}
 
 {% block content %}
-    <h1>Hello!</h1>
+<div class="page-width about-page">
+    <header class="about-heading">
+        <p class="about-kicker">Немного личного</p>
+        <h1>Обо мне</h1>
+        <p>Кто я, чем увлекаюсь и почему веду этот блог.</p>
+    </header>
+
+    <section class="about-intro" aria-labelledby="intro-title">
+        <img class="about-portrait" src="{% static 'main/image/profile.png' %}" alt="Паньков Даниил" loading="lazy">
+        <div class="about-intro-copy">
+            <p class="about-kicker">Привет, я</p>
+            <h2 id="intro-title">Паньков Даниил <span class="about-handle">PankofID</span></h2>
+            <p>Мне 16 лет. Я увлекаюсь программированием и сейчас изучаю Python и Django. Мне нравится не только писать код, но и понимать, как устроены вещи, а затем применять новые знания в собственных проектах.</p>
+            <p>В свободное время интересуюсь математикой, нейросетями и технологиями. Этот сайт — место, где я собираю свои заметки, идеи и результаты работы.</p>
+        </div>
+    </section>
+
+    <section class="about-section" id="interests" aria-labelledby="interests-title">
+        <div class="about-section-heading">
+            <span class="about-section-number">01</span>
+            <div>
+                <h2 id="interests-title">Что меня увлекает</h2>
+                <p>Темы, к которым я постоянно возвращаюсь.</p>
+            </div>
+        </div>
+        <div class="interest-grid">
+            <article class="interest-card">
+                <span class="interest-mark" aria-hidden="true">&lt;/&gt;</span>
+                <h3>Программирование</h3>
+                <p>Изучаю Python и Django, создаю веб-проекты и постепенно осваиваю новые инструменты.</p>
+            </article>
+            <article class="interest-card">
+                <span class="interest-mark" aria-hidden="true">∑</span>
+                <h3>Математика</h3>
+                <p>Интересуюсь задачами и идеями, которые помогают тренировать логику и видеть связи.</p>
+            </article>
+            <article class="interest-card">
+                <span class="interest-mark" aria-hidden="true">✳</span>
+                <h3>Технологии и ИИ</h3>
+                <p>Слежу за развитием нейросетей и думаю, как новые технологии могут помогать людям.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="about-section about-learning" aria-labelledby="learning-title">
+        <div class="about-section-heading">
+            <span class="about-section-number">02</span>
+            <div>
+                <h2 id="learning-title">Учусь через практику</h2>
+                <p>Мне важно превращать любопытство в работающие вещи.</p>
+            </div>
+        </div>
+        <div class="learning-panel">
+            <div class="learning-step">
+                <span>01</span>
+                <div><h3>Разобраться</h3><p>Изучить новую тему и понять основные принципы.</p></div>
+            </div>
+            <div class="learning-step">
+                <span>02</span>
+                <div><h3>Попробовать</h3><p>Закрепить знания на небольшом проекте или задаче.</p></div>
+            </div>
+            <div class="learning-step">
+                <span>03</span>
+                <div><h3>Поделиться</h3><p>Записать выводы и интересные находки в блог.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section about-blog" aria-labelledby="blog-title">
+        <div class="about-section-heading">
+            <span class="about-section-number">03</span>
+            <div>
+                <h2 id="blog-title">Зачем этот блог</h2>
+                <p>Личная копилка мыслей и опыта.</p>
+            </div>
+        </div>
+        <div class="about-blog-panel">
+            <p>Здесь я пишу об учёбе, программировании, своих проектах и темах, которые показались мне интересными. Блог помогает сохранять то, что узнал, и делиться этим с другими.</p>
+            <a class="button button-dark" href="{% url 'main:posts' %}">Перейти к постам <span aria-hidden="true">→</span></a>
+        </div>
+    </section>
+</div>
 {% endblock %}

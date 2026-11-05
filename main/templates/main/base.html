@@ -18,8 +18,8 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
             </button>
             <nav class="primary-nav" id="primary-nav" aria-label="Основная навигация">
-                <a class="nav-link is-active" href="{% url 'main:index' %}">Главная</a>
-                <a class="nav-link" href="{% url 'main:about' %}">О&nbsp;мне</a>
+                <a class="nav-link{% if request.resolver_match.url_name == 'index' %} is-active{% endif %}" href="{% url 'main:index' %}">Главная</a>
+                <a class="nav-link{% if request.resolver_match.url_name == 'about' %} is-active{% endif %}" href="{% url 'main:about' %}">О&nbsp;мне</a>
                 <a class="nav-link" href="{% url 'main:posts' %}">Посты</a>
                 <a class="nav-link" href="{% url 'main:contact' %}">Контакты</a>
             </nav>
