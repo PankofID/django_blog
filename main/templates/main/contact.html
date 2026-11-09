@@ -1,0 +1,59 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block extra_head %}<link rel="stylesheet" href="{% static 'main/css/contact.css' %}">{% endblock %}
+
+{% block title %}PankofID — Контакты{% endblock %}
+
+{% block content %}
+<div class="page-width contact-page">
+    <header class="contact-heading">
+        <p class="contact-kicker">Будем на связи</p>
+        <h1>Контакты</h1>
+        <p>Напиши мне или загляни в соцсети — буду рад общению.</p>
+    </header>
+
+    <section class="contact-panel" aria-labelledby="contact-title">
+        <div class="contact-panel-heading">
+            <div>
+                <h2 id="contact-title">Где меня найти</h2>
+                <p>Выбери удобную площадку для связи.</p>
+            </div>
+        </div>
+        <div class="contact-grid">
+            <a class="contact-card" href="https://github.com/pankofid">
+                <span class="contact-mark" aria-hidden="true">&lt;/&gt;</span>
+                <span class="contact-card-copy">
+                    <strong>GitHub</strong>
+                    <span>Мои проекты и код</span>
+                </span>
+                <span class="contact-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="contact-card" href="https://t.me/PankofID">
+                <span class="contact-mark" aria-hidden="true">↗</span>
+                <span class="contact-card-copy">
+                    <strong>Telegram</strong>
+                    <span>Отвечу в личных сообщениях</span>
+                </span>
+                <span class="contact-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="contact-card" href="https://x.com/PankofID">
+                <span class="contact-mark" aria-hidden="true">X</span>
+                <span class="contact-card-copy">
+                    <strong>X</strong>
+                    <span>Иногда публикую посты</span>
+                </span>
+                <span class="contact-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="contact-card" href="https://www.youtube.com/@PankofID">
+                <span class="contact-mark" aria-hidden="true">▶</span>
+                <span class="contact-card-copy">
+                    <strong>YouTube</strong>
+                    <span>Мой канал</span>
+                </span>
+                <span class="contact-arrow" aria-hidden="true">→</span>
+            </a>
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+.contact-page {
+    max-width: 900px;
+    padding-block: 35px 52px;
+}
+
+.contact-heading {
+    margin-bottom: 25px;
+}
+
+.contact-kicker {
+    margin: 0 0 4px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.contact-heading h1 {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: clamp(30px, 4vw, 38px);
+    font-weight: 800;
+    letter-spacing: -.7px;
+    line-height: 1.25;
+}
+
+.contact-heading > p:last-child {
+    margin: 7px 0 0;
+    color: var(--muted);
+}
+
+.contact-panel {
+    padding: 23px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.contact-panel-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.contact-panel-heading h2 {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+.contact-panel-heading p {
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.contact-card {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 13px;
+    padding: 15px;
+    background: var(--page);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    transition: border-color .18s ease, transform .18s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.contact-mark {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+    place-items: center;
+    color: var(--accent);
+    background: #edf2f8;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.contact-card-copy {
+    display: grid;
+    min-width: 0;
+    gap: 2px;
+}
+
+.contact-card-copy strong {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.contact-card-copy > span {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contact-arrow {
+    margin-left: auto;
+    color: var(--accent);
+    font-size: 18px;
+}
+
+@media (max-width: 680px) {
+    .contact-page {
+        padding-block: 26px 36px;
+    }
+
+    .contact-panel {
+        padding: 17px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
