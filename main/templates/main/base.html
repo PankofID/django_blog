@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#111a27">
     <meta name="description" content="Личный блог Панкова Даниила о программировании, математике и жизни.">
     <title>{% block title %}PankofID — личный блог{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -62,6 +62,7 @@
             <span>© 2025 PankofID. Все права защищены.</span>
         </div>
     </footer>
-    <script src="{% static 'main/js/home.js' %}" defer></script>
+    <script src="{% static 'main/js/base.js' %}" defer></script>
+    {% block extra_scripts %}{% endblock %}
 </body>
 </html>

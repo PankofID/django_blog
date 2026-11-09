@@ -1,6 +1,9 @@
 {% extends "main/base.html" %}
 {% load static %}
 
+{% block extra_head %}<link rel="stylesheet" href="{% static 'main/css/home.css' %}">{% endblock %}
+{% block extra_scripts %}<script src="{% static 'main/js/home.js' %}" defer></script>{% endblock %}
+
 {% block title %}PankofID — личный блог Панкова Даниила{% endblock %}
 
 {% block content %}
