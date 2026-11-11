@@ -1,7 +1,15 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Category
+
 
 # Register your models here.
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+    prepopulated_fields = {'slug': ('name',)}
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):

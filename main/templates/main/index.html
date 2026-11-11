@@ -31,7 +31,7 @@
                     <svg class="heading-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 2c1.5 4-2.8 5.2-.5 8.1.8-1.6 2.6-2.4 3.2-4.1 3.1 2.8 4.7 5.7 3.7 9.2a7.1 7.1 0 0 1-13.8-1.8c0-3.1 2.2-6.1 5-8.3-.1 2.5.4 3.8 1.5 4.8C11.3 7 14.3 5.5 12.5 2Z"/></svg>
                     Популярные посты
                 </h2>
-                <a class="text-link" href="#latest">Все посты <span aria-hidden="true">→</span></a>
+                <a class="text-link" href="{% url 'main:posts' %}">Все посты <span aria-hidden="true">→</span></a>
             </div>
             <div class="popular-grid searchable-posts">
                 {% for post in popular_posts %}
@@ -66,7 +66,7 @@
                     <svg class="heading-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9Z"/><path d="M14 2v7h7M8 13h8m-8 4h8"/></svg>
                     Последние посты
                 </h2>
-                <a class="text-link" href="#posts">Все посты <span aria-hidden="true">→</span></a>
+                <a class="text-link" href="{% url 'main:posts' %}">Все посты <span aria-hidden="true">→</span></a>
             </div>
             <div class="latest-list searchable-posts">
                 {% for post in recent_posts %}

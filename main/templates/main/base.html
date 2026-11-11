@@ -20,7 +20,7 @@
             <nav class="primary-nav" id="primary-nav" aria-label="Основная навигация">
                 <a class="nav-link{% if request.resolver_match.url_name == 'index' %} is-active{% endif %}" href="{% url 'main:index' %}">Главная</a>
                 <a class="nav-link{% if request.resolver_match.url_name == 'about' %} is-active{% endif %}" href="{% url 'main:about' %}">О&nbsp;мне</a>
-                <a class="nav-link" href="{% url 'main:posts' %}">Посты</a>
+                <a class="nav-link{% if request.resolver_match.url_name == 'posts' %} is-active{% endif %}" href="{% url 'main:posts' %}">Посты</a>
                 <a class="nav-link" href="{% url 'main:contact' %}">Контакты</a>
             </nav>
             <div class="header-actions">
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span>© 2025 PankofID. Все права защищены.</span>
+            <span>© 2026 PankofID. Все права защищены.</span>
         </div>
     </footer>
     <script src="{% static 'main/js/base.js' %}" defer></script>
