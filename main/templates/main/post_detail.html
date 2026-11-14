@@ -1,0 +1,49 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block extra_head %}<link rel="stylesheet" href="{% static 'main/css/post_detail.css' %}">{% endblock %}
+{% block title %}{{ post.title }} — PankofID{% endblock %}
+
+{% block content %}
+<div class="page-width post-detail-page">
+    <nav class="post-breadcrumbs" aria-label="Хлебные крошки">
+        <a href="{% url 'main:index' %}">Главная</a>
+        <span aria-hidden="true">/</span>
+        <a href="{% url 'main:posts' %}">Посты</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ post.title }}</span>
+    </nav>
+
+    <article class="post-article">
+        <header class="post-header">
+            <a class="post-category" href="{% url 'main:posts' %}?category={{ post.category.slug|urlencode }}">{{ post.category.name }}</a>
+            <h1>{{ post.title }}</h1>
+            <div class="post-meta">
+                <time datetime="{{ post.created_at|date:'c' }}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+                    {{ post.created_at|date:"j E Y" }}
+                </time>
+                <span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    {{ post.views }}
+                </span>
+            </div>
+        </header>
+
+        {% if post.image %}
+            <figure class="post-cover">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            </figure>
+        {% endif %}
+
+        <div class="post-content">{{ post.sanitized_content }}</div>
+
+        <footer class="post-footer">
+            <a class="post-back-link" href="{% url 'main:posts' %}">
+                <span aria-hidden="true">←</span> Все посты
+            </a>
+            <a class="post-category" href="{% url 'main:posts' %}?category={{ post.category.slug|urlencode }}">{{ post.category.name }}</a>
+        </footer>
+    </article>
+</div>
+{% endblock %}
