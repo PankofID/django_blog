@@ -1,6 +1,7 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
-from main.models import Post
+from main.models import Post, Category
 
 
 # Create your views here.
@@ -20,10 +21,26 @@ def about(request):
     return render(request, 'main/about.html')
 
 def posts(request):
-    posts_list = Post.objects.order_by('-created_at')
+    category_slug = request.GET.get('category')
+    search_query = request.GET.get('q', '').strip()
+
+    posts_list = Post.objects.select_related('category').order_by('-created_at')
+    if category_slug:
+        posts_list = posts_list.filter(category__slug=category_slug)
+    if search_query:
+        posts_list = posts_list.filter(
+            Q(title__icontains=search_query)
+            | Q(content__icontains=search_query)
+            | Q(category__name__icontains=search_query)
+        )
+
+    categories = Category.objects.all()
 
     context = {
-        'posts_list': posts_list
+        'posts_list': posts_list,
+        'categories': categories,
+        'active_category': category_slug,
+        'search_query': search_query,
     }
 
     return render(request, 'main/posts.html', context)

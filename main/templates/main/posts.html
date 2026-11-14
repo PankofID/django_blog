@@ -1,0 +1,69 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block extra_head %}<link rel="stylesheet" href="{% static 'main/css/posts.css' %}">{% endblock %}
+{% block title %}PankofID — Все посты{% endblock %}
+
+{% block content %}
+<div class="page-width posts-page">
+    <header class="posts-heading">
+        <p class="posts-kicker">Заметки и идеи</p>
+        <h1>Все посты</h1>
+        <p>Мысли, опыт и находки о программировании, учёбе и не только.</p>
+    </header>
+
+    <section class="posts-section" aria-labelledby="posts-list-title">
+        <div class="posts-toolbar">
+            <div class="posts-toolbar-heading">
+                <h2 id="posts-list-title">Лента публикаций</h2>
+                <span class="posts-count">Постов: {{ posts_list|length }}</span>
+            </div>
+            <form class="posts-search" method="get" action="{% url 'main:posts' %}">
+                {% if active_category %}<input type="hidden" name="category" value="{{ active_category }}">{% endif %}
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2"/></svg>
+                <span class="sr-only">Поиск по постам</span>
+                <input type="search" name="q" value="{{ search_query }}" placeholder="Найти пост..." autocomplete="off">
+            </form>
+        </div>
+
+        <div class="posts-filters" aria-label="Категории постов">
+            <a class="posts-filter {% if not active_category %}is-active{% endif %}" href="{% if search_query %}{% url 'main:posts' %}?q={{ search_query|urlencode }}{% else %}{% url 'main:posts' %}{% endif %}">Все посты</a>
+            {% for category in categories %}
+                <a class="posts-filter {% if active_category == category.slug %}is-active{% endif %}"
+                   href="?category={{ category.slug }}{% if search_query %}&q={{ search_query|urlencode }}{% endif %}">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+
+        <div class="posts-grid">
+            {% for post in posts_list %}
+                <article class="posts-card">
+                    <a class="posts-card-image" href="/posts/{{ post.slug }}/" aria-label="{{ post.title }}"{% if not post.image %} style="background: #fff"{% endif %}>
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="" loading="lazy">
+                        {% else %}
+                            <span class="posts-image-mark" aria-hidden="true">&lt;/&gt;</span>
+                        {% endif %}
+                    </a>
+                    <div class="posts-card-content">
+                        <div class="posts-card-topline">
+                            <span class="posts-category">{{ post.category.name }}</span>
+                            <time datetime="{{ post.created_at|date:'c' }}">{{ post.created_at|date:"j E Y" }}</time>
+                        </div>
+                        <h3><a href="/posts/{{ post.slug }}/">{{ post.title }}</a></h3>
+                        <p class="posts-excerpt">{{ post.content|striptags|truncatewords:28 }}</p>
+                        <div class="posts-card-footer">
+                            <span class="posts-views">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                {{ post.views }}
+                            </span>
+                            <a class="posts-read-link" href="/posts/{{ post.slug }}/">Читать <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                </article>
+            {% empty %}
+                <p class="posts-empty">Пока нет публикаций. Новые записи появятся здесь.</p>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}
