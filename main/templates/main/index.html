@@ -13,11 +13,11 @@
         <h1 id="hero-title">Паньков Даниил</h1>
         <p class="hero-copy">Это мой блог. Здесь я делюсь своими мыслями,<br class="desktop-break"> опытом, учёбой, проектами и просто тем, что интересно.</p>
         <div class="tag-list" aria-label="Темы блога">
-            <a href="#posts">Программирование</a>
-            <a href="#posts">Python</a>
-            <a href="#posts">Django</a>
-            <a href="#posts">Математика</a>
-            <a href="#posts">Жизнь</a>
+            <a href="{% url 'main:posts' %}?category=programmirovanie">Программирование</a>
+            <a href="{% url 'main:posts' %}?category=nejroseti">Нейросети</a>
+            <a href="{% url 'main:posts' %}?category=matematika">Математика</a>
+            <a href="{% url 'main:posts' %}?category=lichnoe">Личное</a>
+            <a href="{% url 'main:posts' %}?category=raznoe">Разное</a>
         </div>
         <a class="signature-link" href="#about">PankofID <span aria-hidden="true">→</span></a>
     </div>
@@ -118,12 +118,12 @@
                 Категории
             </h2>
             <ul class="category-list">
-                <li><a href="#posts">Программирование <span>8</span></a></li>
-                <li><a href="#posts">Математика <span>6</span></a></li>
-                <li><a href="#posts">Нейросети и ИИ <span>4</span></a></li>
-                <li><a href="#posts">Личное <span>3</span></a></li>
-                <li><a href="#posts">Проекты <span>2</span></a></li>
-                <li><a href="#posts">Разное <span>1</span></a></li>
+                <li><a href="{% url 'main:posts' %}?category=programmirovanie">Программирование <span>8</span></a></li>
+                <li><a href="{% url 'main:posts' %}?category=matematika">Математика <span>6</span></a></li>
+                <li><a href="{% url 'main:posts' %}?category=nejroseti">Нейросети и ИИ <span>4</span></a></li>
+                <li><a href="{% url 'main:posts' %}?category=lichnoe">Личное <span>3</span></a></li>
+                <li><a href="{% url 'main:posts' %}?category=proekty">Проекты <span>2</span></a></li>
+                <li><a href="{% url 'main:posts' %}?category=raznoe">Разное <span>1</span></a></li>
             </ul>
         </section>
     </aside>

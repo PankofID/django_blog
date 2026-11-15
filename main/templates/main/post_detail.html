@@ -23,6 +23,12 @@
                     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
                     {{ post.created_at|date:"j E Y" }}
                 </time>
+                {% if post.updated_at|date:'U' != post.created_at|date:'U' %}
+                    <time datetime="{{ post.updated_at|date:'c' }}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                        Изменено: {{ post.updated_at|date:"j E Y, H:i" }}
+                    </time>
+                {% endif %}
                 <span>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                     {{ post.views }}
