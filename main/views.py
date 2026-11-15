@@ -1,4 +1,4 @@
-from django.db.models import Q, F
+from django.db.models import Q, F, Count
 from django.shortcuts import render, get_object_or_404
 
 from main.models import Post, Category
@@ -9,10 +9,12 @@ from main.models import Post, Category
 def index(request):
     popular_posts = Post.objects.order_by('-views')[:3]
     recent_posts = Post.objects.order_by('-created_at')[:5]
+    categories = Category.objects.annotate(post_count=Count('posts'))
 
     context = {
         'popular_posts': popular_posts,
         'recent_posts': recent_posts,
+        'categories': categories,
     }
 
     return render(request, 'main/index.html', context)

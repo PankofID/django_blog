@@ -118,12 +118,9 @@
                 Категории
             </h2>
             <ul class="category-list">
-                <li><a href="{% url 'main:posts' %}?category=programmirovanie">Программирование</a></li>
-                <li><a href="{% url 'main:posts' %}?category=matematika">Математика</a></li>
-                <li><a href="{% url 'main:posts' %}?category=nejroseti">Нейросети и ИИ</a></li>
-                <li><a href="{% url 'main:posts' %}?category=lichnoe">Личное</a></li>
-                <li><a href="{% url 'main:posts' %}?category=proekty">Проекты</a></li>
-                <li><a href="{% url 'main:posts' %}?category=raznoe">Разное</a></li>
+                {% for category in categories %}
+                    <li><a href="{% url 'main:posts' %}?category={{ category.slug }}">{{ category.name }} <span>{{ category.post_count }}</span></a></li>
+                {% endfor %}
             </ul>
         </section>
     </aside>
