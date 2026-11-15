@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import Q, F
 from django.shortcuts import render, get_object_or_404
 
 from main.models import Post, Category
@@ -47,6 +47,13 @@ def posts(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
+
+    viewed_post = request.session.get('viewed_post', [])
+    if post.id not in viewed_post:
+        Post.objects.filter(id=post.id).update(views=F('views') + 1)
+
+    viewed_post.append(post.id)
+    request.session['viewed_post'] = viewed_post
 
     context = {
         'post': post,
