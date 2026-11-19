@@ -6,7 +6,6 @@
     background:
         linear-gradient(90deg, rgb(8 14 20 / 87%) 0%, rgb(10 17 24 / 69%) 43%, rgb(10 17 24 / 25%) 100%),
         linear-gradient(0deg, #101923 0%, transparent 58%),
-        url("/templates/main/image/hero.jpg") center 48% / cover,
         #182333;
     color: #f4f7fc;
 }
